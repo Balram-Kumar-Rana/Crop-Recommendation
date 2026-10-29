@@ -1,0 +1,11 @@
+import pandas as pd, pathlib, sys
+path = pathlib.Path(r'C:/Users/Balram/Desktop/recommendation/datasets/crop-recommendation/Crop_recommendation.csv')
+df = pd.read_csv(path)
+print('Rows:', df.shape[0])
+print('Columns:', df.shape[1])
+print('Columns list:', list(df.columns))
+print('Missing values total:', df.isnull().sum().sum())
+print('Duplicate rows:', df.duplicated().sum())
+print('Target distribution (first 10):')
+print(df['label'].value_counts().sort_index().head(10))
+print('Unique targets:', df['label'].nunique())

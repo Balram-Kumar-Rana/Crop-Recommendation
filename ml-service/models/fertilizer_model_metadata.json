@@ -1,0 +1,49 @@
+{
+  "model_name": "Fertilizer Recommendation Random Forest",
+  "target_column": "recommended_fertilizer_label",
+  "feature_columns": [
+    "temperature_c",
+    "humidity_percent",
+    "moisture_percent",
+    "soil_type",
+    "crop_type",
+    "season",
+    "nitrogen_N_kg_ha_proxy",
+    "phosphorus_P_kg_ha_proxy",
+    "potassium_K_kg_ha_proxy",
+    "soil_ph",
+    "rainfall_mm_proxy"
+  ],
+  "categorical_features": [
+    "soil_type",
+    "crop_type",
+    "season"
+  ],
+  "numeric_features": [
+    "temperature_c",
+    "humidity_percent",
+    "moisture_percent",
+    "nitrogen_N_kg_ha_proxy",
+    "phosphorus_P_kg_ha_proxy",
+    "potassium_K_kg_ha_proxy",
+    "soil_ph",
+    "rainfall_mm_proxy"
+  ],
+  "classes": [
+    "Ammonium Sulphate",
+    "Balanced NPK Mix",
+    "DAP",
+    "MOP",
+    "NPK 10-26-26",
+    "NPK 20-20-20",
+    "SSP",
+    "Urea"
+  ],
+  "dataset_rows": 1800,
+  "training_rows": 1440,
+  "testing_rows": 360,
+  "test_accuracy": 0.4666666666666667,
+  "sklearn_version": "1.8.0",
+  "trained_at_utc": "2026-10-28T19:43:30.977800+00:00",
+  "data_note": "Synthetic prototype data; not validated for real agricultural advice."
+}
