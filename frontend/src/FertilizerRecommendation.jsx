@@ -1,33 +1,48 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import './FertilizerRecommendation.css';
 
 const API_BASE_URL =
   (import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1').replace(/\/$/, '');
 
 const initialForm = {
-  temperature_c: '27',
-  humidity_percent: '65',
+  temperature_c: '24.5',
+  humidity_percent: '78',
   moisture_percent: '40',
   soil_type: 'Loamy',
   crop_type: 'Wheat',
   season: 'Rabi',
-  nitrogen_N_kg_ha_proxy: '50',
-  phosphorus_P_kg_ha_proxy: '30',
-  potassium_K_kg_ha_proxy: '25',
+  nitrogen_N_kg_ha_proxy: '90',
+  phosphorus_P_kg_ha_proxy: '42',
+  potassium_K_kg_ha_proxy: '43',
   soil_ph: '6.5',
-  rainfall_mm_proxy: '100',
+  rainfall_mm_proxy: '180',
 };
 
-const fields = [
-  { name: 'temperature_c', label: 'Temperature', unit: '°C', min: -10, max: 70 },
-  { name: 'humidity_percent', label: 'Humidity', unit: '%', min: 0, max: 100 },
-  { name: 'moisture_percent', label: 'Soil moisture', unit: '%', min: 0, max: 100 },
-  { name: 'nitrogen_N_kg_ha_proxy', label: 'Nitrogen (N)', unit: 'kg/ha', min: 0 },
-  { name: 'phosphorus_P_kg_ha_proxy', label: 'Phosphorus (P)', unit: 'kg/ha', min: 0 },
-  { name: 'potassium_K_kg_ha_proxy', label: 'Potassium (K)', unit: 'kg/ha', min: 0 },
-  { name: 'soil_ph', label: 'Soil pH', unit: 'pH', min: 0, max: 14 },
-  { name: 'rainfall_mm_proxy', label: 'Rainfall', unit: 'mm', min: 0 },
+const metrics = [
+  { name: 'nitrogen_N_kg_ha_proxy', label: 'Nitrogen (N in Soil)', unit: 'kg/ha', min: 0, max: 560, step: 1, low: 'Low (<280)', mid: 'Medium', high: 'High (>560)' },
+  { name: 'phosphorus_P_kg_ha_proxy', label: 'Phosphorus (P in Soil)', unit: 'kg/ha', min: 0, max: 100, step: 1, low: 'Low (<10)', mid: 'Medium (10–25)', high: 'High (>25)' },
+  { name: 'potassium_K_kg_ha_proxy', label: 'Potassium (K in Soil)', unit: 'kg/ha', min: 0, max: 280, step: 1, low: 'Low (<110)', mid: 'Medium (110–280)', high: 'High (>280)' },
+  { name: 'soil_ph', label: 'Soil Reaction (pH Level)', unit: 'pH', min: 4, max: 9.5, step: 0.1, low: '4.0 (Acidic)', mid: '7.0 (Neutral)', high: '9.5 (Alkaline)' },
 ];
+
+const environment = [
+  { name: 'temperature_c', label: 'Temperature', unit: '°C', min: -10, max: 70, icon: '♨' },
+  { name: 'humidity_percent', label: 'Humidity', unit: '%', min: 0, max: 100, icon: '◌' },
+  { name: 'rainfall_mm_proxy', label: 'Rainfall', unit: 'mm', min: 0, icon: '☂' },
+];
+
+const presets = [
+  { name: 'Alluvial Soil', region: 'Punjab / Haryana', description: 'Canal irrigated, high nitrogen demand', values: { soil_type: 'Loamy', crop_type: 'Wheat', season: 'Rabi', nitrogen_N_kg_ha_proxy: '90', phosphorus_P_kg_ha_proxy: '42', potassium_K_kg_ha_proxy: '43', soil_ph: '6.5', temperature_c: '24.5', humidity_percent: '78', rainfall_mm_proxy: '180', moisture_percent: '40' } },
+  { name: 'Black Soil', region: 'Maharashtra / MP', description: 'Clay rich, high moisture retention', values: { soil_type: 'Black', crop_type: 'Cotton', season: 'Kharif', nitrogen_N_kg_ha_proxy: '120', phosphorus_P_kg_ha_proxy: '35', potassium_K_kg_ha_proxy: '180', soil_ph: '7.2', temperature_c: '29', humidity_percent: '70', rainfall_mm_proxy: '650', moisture_percent: '65' } },
+  { name: 'Red Loamy Soil', region: 'South India', description: 'Light texture, low natural N & P', values: { soil_type: 'Red', crop_type: 'Rice', season: 'Kharif', nitrogen_N_kg_ha_proxy: '45', phosphorus_P_kg_ha_proxy: '18', potassium_K_kg_ha_proxy: '75', soil_ph: '5.8', temperature_c: '27', humidity_percent: '72', rainfall_mm_proxy: '420', moisture_percent: '45' } },
+  { name: 'Sandy Loam', region: 'Rajasthan / Gujarat', description: 'Arid to semi-arid, low rainfall', values: { soil_type: 'Sandy', crop_type: 'Millet', season: 'Kharif', nitrogen_N_kg_ha_proxy: '35', phosphorus_P_kg_ha_proxy: '12', potassium_K_kg_ha_proxy: '65', soil_ph: '7.8', temperature_c: '32', humidity_percent: '35', rainfall_mm_proxy: '90', moisture_percent: '20' } },
+];
+
+const selectOptions = {
+  soil_type: ['Loamy', 'Black', 'Red', 'Sandy', 'Clayey'],
+  crop_type: ['Wheat', 'Rice', 'Maize', 'Cotton', 'Millet', 'Sugarcane', 'Pulses'],
+  season: ['Kharif', 'Rabi', 'Zaid'],
+};
 
 export default function FertilizerRecommendation() {
   const [form, setForm] = useState(initialForm);
@@ -36,10 +51,20 @@ export default function FertilizerRecommendation() {
   const [result, setResult] = useState(null);
 
   function handleChange(event) {
-    setForm((previous) => ({
-      ...previous,
-      [event.target.name]: event.target.value,
-    }));
+    const { name, value } = event.target;
+    setForm((previous) => ({ ...previous, [name]: value }));
+    setError('');
+    setResult(null);
+  }
+
+  function applyPreset(preset) {
+    setForm((previous) => ({ ...previous, ...preset.values }));
+    setError('');
+    setResult(null);
+  }
+
+  function resetForm() {
+    setForm({ ...initialForm });
     setError('');
     setResult(null);
   }
@@ -49,20 +74,16 @@ export default function FertilizerRecommendation() {
     setError('');
     setResult(null);
 
-    const numericFields = fields.map((field) => field.name);
-
-    for (const name of numericFields) {
-      const value = form[name];
-
-      if (value.trim() === '' || !Number.isFinite(Number(value))) {
+    const requiredNumbers = [
+      ...metrics.map((item) => item.name),
+      ...environment.map((item) => item.name),
+      'moisture_percent',
+    ];
+    for (const name of requiredNumbers) {
+      if (String(form[name]).trim() === '' || !Number.isFinite(Number(form[name]))) {
         setError(`Please enter a valid number for ${name.replaceAll('_', ' ')}.`);
         return;
       }
-    }
-
-    if (!form.soil_type || !form.crop_type || !form.season) {
-      setError('Please complete all categorical fields.');
-      return;
     }
 
     const payload = {
@@ -79,201 +100,179 @@ export default function FertilizerRecommendation() {
       rainfall_mm_proxy: Number(form.rainfall_mm_proxy),
     };
 
-    for (const field of fields) {
-      const value = payload[field.name];
-
-      if (field.min !== undefined && value < field.min) {
-        setError(`${field.label} must be at least ${field.min}.`);
-        return;
-      }
-
-      if (field.max !== undefined && value > field.max) {
-        setError(`${field.label} must not exceed ${field.max}.`);
-        return;
-      }
+    if (payload.humidity_percent < 0 || payload.humidity_percent > 100 ||
+        payload.moisture_percent < 0 || payload.moisture_percent > 100 ||
+        payload.soil_ph < 0 || payload.soil_ph > 14 ||
+        payload.temperature_c < -10 || payload.temperature_c > 70 ||
+        payload.rainfall_mm_proxy < 0 ||
+        payload.nitrogen_N_kg_ha_proxy < 0 ||
+        payload.phosphorus_P_kg_ha_proxy < 0 ||
+        payload.potassium_K_kg_ha_proxy < 0) {
+      setError('Please check the entered values and make sure they are within a valid range.');
+      return;
     }
 
     setLoading(true);
-
     try {
-      const response = await fetch(
-        `${API_BASE_URL}/fertilizer-recommendation/predict`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        },
-      );
-
+      const response = await fetch(`${API_BASE_URL}/fertilizer-recommendation/predict`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
       const data = await response.json().catch(() => ({}));
-
       if (!response.ok) {
         const detail = data.detail;
-        throw new Error(
-          typeof detail === 'string'
-            ? detail
-            : `Request failed with status ${response.status}`,
-        );
+        throw new Error(typeof detail === 'string' ? detail : `Request failed with status ${response.status}`);
       }
-
       setResult(data);
     } catch (err) {
-      setError(
-        err.message === 'Failed to fetch'
-          ? 'Backend se connection nahi ho raha. Check karo ki FastAPI server port 8000 par running hai.'
-          : err.message || 'Something went wrong. Please try again.',
-      );
+      setError(err.message === 'Failed to fetch'
+        ? 'Backend se connection nahi ho raha. Check karo ki FastAPI server port 8000 par running hai.'
+        : err.message || 'Something went wrong. Please try again.');
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <section className="fertilizer-page">
-      <div className="module-heading">
-        <span className="eyebrow">PRECISION AGRICULTURE</span>
-        <h2>Fertilizer Recommendation</h2>
-        <p>
-          Soil conditions, nutrient values aur crop details enter karke
-          prototype ML prediction dekho.
-        </p>
+    <section className="advisor-page">
+      <div className="advisor-topline">
+        <span className="advisor-script">Agronomic Soil Health &amp; Crop Planning</span>
+        <h2>AI Crop &amp; <span>Fertilizer Advisor</span></h2>
+        <div className="advisor-underline" />
+        <p>Enter your soil testing metrics (N-P-K &amp; pH) and regional climate conditions to explore crop suitability and a fertilizer prediction.</p>
       </div>
 
-      <div className="fertilizer-notice" role="note">
-        <span className="notice-icon">!</span>
-        <div>
-          <strong>Prototype model — not validated for farm decisions</strong>
-          <p>
-            Model synthetic data par trained hai aur test accuracy 46.67% hai.
-            Fertilizer selection aur dosage ke liye soil test aur qualified
-            agricultural expert ki advice zaroor lo.
-          </p>
+      <section className="regional-presets" aria-label="Quick regional soil presets">
+        <div className="presets-heading">
+          <strong><span aria-hidden="true">◇</span> QUICK REGIONAL SOIL PRESETS</strong>
+          <span>Click a card to autofill typical example values</span>
         </div>
-      </div>
-
-      <form className="fertilizer-form" onSubmit={handleSubmit}>
-        <div className="form-section">
-          <div className="section-heading">
-            <span className="section-number">01</span>
-            <div>
-              <h3>Crop & soil profile</h3>
-              <p>Apni crop aur soil ki details select karo.</p>
-            </div>
-          </div>
-
-          <div className="fertilizer-grid">
-            <div className="fertilizer-field">
-              <label htmlFor="fert-soil">Soil type</label>
-              <input
-                id="fert-soil"
-                name="soil_type"
-                value={form.soil_type}
-                onChange={handleChange}
-                placeholder="Dataset ka exact soil type"
-                required
-              />
-            </div>
-
-            <div className="fertilizer-field">
-              <label htmlFor="fert-crop">Crop type</label>
-              <input
-                id="fert-crop"
-                name="crop_type"
-                value={form.crop_type}
-                onChange={handleChange}
-                placeholder="Dataset ka exact crop type"
-                required
-              />
-            </div>
-
-            <div className="fertilizer-field">
-              <label htmlFor="fert-season">Season</label>
-              <select
-                id="fert-season"
-                name="season"
-                value={form.season}
-                onChange={handleChange}
-                required
-              >
-                <option value="Kharif">Kharif</option>
-                <option value="Rabi">Rabi</option>
-                <option value="Zaid">Zaid</option>
-              </select>
-            </div>
-          </div>
+        <div className="presets-grid">
+          {presets.map((preset) => (
+            <button className="preset-card" type="button" key={preset.name} onClick={() => applyPreset(preset)}>
+              <strong>{preset.name} <span>({preset.region})</span></strong>
+              <small>{preset.description}</small>
+            </button>
+          ))}
         </div>
+      </section>
 
-        <div className="form-section">
-          <div className="section-heading">
-            <span className="section-number">02</span>
-            <div>
-              <h3>Soil nutrients & environment</h3>
-              <p>Available measurements fill karo. Values dataset ke units ke according honi chahiye.</p>
-            </div>
+      <form className="advisor-layout" onSubmit={handleSubmit}>
+        <section className="soil-metrics-card">
+          <div className="metrics-card-heading">
+            <h3>Soil &amp; Climate Metrics</h3>
+            <button type="button" className="reset-button" onClick={resetForm}>↻ &nbsp;Reset</button>
           </div>
 
-          <div className="fertilizer-grid">
-            {fields.map((field) => (
-              <div className="fertilizer-field" key={field.name}>
-                <label htmlFor={`fert-${field.name}`}>
-                  {field.label}
-                  <span>{field.unit}</span>
-                </label>
+          {metrics.map((metric) => {
+            const numericValue = Number(form[metric.name] || 0);
+            const sliderValue = Math.min(metric.max, Math.max(metric.min, numericValue));
+            return (
+              <div className="metric-control" key={metric.name}>
+                <div className="metric-label-row">
+                  <label htmlFor={`${metric.name}-range`}>{metric.label}</label>
+                  <div className="metric-value">
+                    <input
+                      aria-label={`${metric.label} exact value`}
+                      type="number"
+                      min={metric.min}
+                      max={metric.max}
+                      step={metric.step}
+                      value={form[metric.name]}
+                      onChange={handleChange}
+                      name={metric.name}
+                    />
+                    <span>{metric.unit}</span>
+                  </div>
+                </div>
                 <input
-                  id={`fert-${field.name}`}
-                  type="number"
-                  name={field.name}
-                  value={form[field.name]}
+                  className="soil-range"
+                  id={`${metric.name}-range`}
+                  type="range"
+                  name={metric.name}
+                  min={metric.min}
+                  max={metric.max}
+                  step={metric.step}
+                  value={sliderValue}
                   onChange={handleChange}
-                  min={field.min}
-                  max={field.max}
-                  step="any"
-                  required
+                  aria-label={`${metric.label} slider`}
                 />
+                <div className="range-hints"><span>{metric.low}</span><span>{metric.mid}</span><span>{metric.high}</span></div>
+              </div>
+            );
+          })}
+
+          <div className="environment-grid">
+            {environment.map((field) => (
+              <div className="environment-field" key={field.name}>
+                <label htmlFor={field.name}><span aria-hidden="true">{field.icon}</span> {field.label} ({field.unit})</label>
+                <input id={field.name} type="number" name={field.name} value={form[field.name]} onChange={handleChange} min={field.min} max={field.max} step="any" required />
               </div>
             ))}
           </div>
-        </div>
 
-        {error && (
-          <div className="fertilizer-error" role="alert">
-            <strong>Unable to get recommendation</strong>
-            <p>{error}</p>
+          <div className="profile-grid">
+            <div className="environment-field">
+              <label htmlFor="soil_type">Soil type</label>
+              <select id="soil_type" name="soil_type" value={form.soil_type} onChange={handleChange}>
+                {selectOptions.soil_type.map((value) => <option key={value}>{value}</option>)}
+              </select>
+            </div>
+            <div className="environment-field">
+              <label htmlFor="crop_type">Crop type</label>
+              <select id="crop_type" name="crop_type" value={form.crop_type} onChange={handleChange}>
+                {selectOptions.crop_type.map((value) => <option key={value}>{value}</option>)}
+              </select>
+            </div>
+            <div className="environment-field">
+              <label htmlFor="season">Season</label>
+              <select id="season" name="season" value={form.season} onChange={handleChange}>
+                {selectOptions.season.map((value) => <option key={value}>{value}</option>)}
+              </select>
+            </div>
+            <div className="environment-field">
+              <label htmlFor="moisture_percent">Soil moisture (%)</label>
+              <input id="moisture_percent" type="number" name="moisture_percent" value={form.moisture_percent} onChange={handleChange} min="0" max="100" step="any" required />
+            </div>
           </div>
-        )}
 
-        <button className="fertilizer-submit" type="submit" disabled={loading}>
-          {loading ? (
-            <>
-              <span className="button-spinner" />
-              Analyzing inputs...
-            </>
-          ) : (
-            <>Get Fertilizer Prediction <span aria-hidden="true">→</span></>
+          {error && <div className="advisor-error" role="alert">{error}</div>}
+          <button className="advisor-submit" type="submit" disabled={loading}>
+            {loading ? <><span className="advisor-spinner" /> Evaluating inputs...</> : <><span aria-hidden="true">✧</span> Evaluate Crop &amp; Fertilizer</>}
+          </button>
+          <p className="advisor-note">Prototype prediction only. Verify fertilizer decisions with a soil test and qualified agricultural expert.</p>
+        </section>
+
+        <aside className={`advisor-results ${result ? 'has-result' : ''}`} aria-live="polite">
+          {!result && !loading && (
+            <div className="advisor-empty">
+              <div className="sprout-circle" aria-hidden="true">♧</div>
+              <h3>Awaiting Soil Parameters</h3>
+              <p>Adjust soil N-P-K, pH, and rainfall metrics on the left, or select a regional preset to receive a fertilizer prediction.</p>
+            </div>
           )}
-        </button>
+          {loading && (
+            <div className="advisor-empty">
+              <div className="sprout-circle advisor-loading-icon" aria-hidden="true">✳</div>
+              <h3>Evaluating your inputs</h3>
+              <p>Sending the current soil and climate values to your configured recommendation API...</p>
+            </div>
+          )}
+          {result && (
+            <div className="advisor-result-content">
+              <div className="sprout-circle" aria-hidden="true">♧</div>
+              <span className="result-kicker">MODEL OUTPUT · PROTOTYPE</span>
+              <h3>Fertilizer Prediction</h3>
+              <p className="advisor-result-name">{result.recommended_fertilizer || 'No fertilizer label returned'}</p>
+              {typeof result.model_confidence === 'number' && <p className="advisor-confidence">Model probability: {(result.model_confidence * 100).toFixed(1)}% <small>· Not real-world reliability</small></p>}
+              {result.prototype_warning && <p className="advisor-warning">{result.prototype_warning}</p>}
+              <p className="advisor-warning">This prototype uses synthetic training data. Confirm any fertilizer decision with a soil test and local agricultural expert.</p>
+              <button type="button" className="reset-result-button" onClick={() => setResult(null)}>Adjust parameters</button>
+            </div>
+          )}
+        </aside>
       </form>
-
-      {result && (
-        <div className="fertilizer-result" aria-live="polite">
-          <div className="result-topline">MODEL OUTPUT · PROTOTYPE</div>
-          <div className="result-icon" aria-hidden="true">✳</div>
-          <h3>Predicted fertilizer</h3>
-          <p className="fertilizer-result-name">{result.recommended_fertilizer}</p>
-
-          {typeof result.model_confidence === 'number' && (
-            <p className="fertilizer-confidence">
-              Model confidence: {(result.model_confidence * 100).toFixed(1)}%
-              <span> · Not a measure of real-world reliability</span>
-            </p>
-          )}
-
-          <p className="result-warning">
-            {result.prototype_warning ||
-              'Prototype prediction only. Confirm with a soil test and agricultural expert.'}
-          </p>
-        </div>
-      )}
     </section>
   );
 }

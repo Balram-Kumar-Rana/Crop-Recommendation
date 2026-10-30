@@ -1,290 +1,166 @@
-﻿.fertilizer-page {
-  width: min(100%, 1050px);
-  margin: 0 auto;
-  padding: 12px 0 48px;
-  color: #173a2b;
-}
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&family=Dancing+Script:wght@500;600&display=swap');
 
-.module-heading {
-  margin-bottom: 26px;
-}
-
-.eyebrow {
-  display: inline-block;
-  margin-bottom: 12px;
-  color: #18815a;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-}
-
-.module-heading h2 {
-  margin: 0 0 10px;
-  color: #143d2b;
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  letter-spacing: -0.04em;
-}
-
-.module-heading > p {
-  max-width: 650px;
-  margin: 0;
-  color: #65776d;
-  line-height: 1.7;
-}
-
-.fertilizer-notice {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  margin-bottom: 24px;
-  padding: 18px;
-  border: 1px solid #f0d7a0;
-  border-radius: 14px;
-  background: #fff9eb;
-  color: #704b0d;
-}
-
-.notice-icon {
-  display: grid;
-  flex: 0 0 27px;
-  width: 27px;
-  height: 27px;
-  place-items: center;
-  border-radius: 50%;
-  background: #f5dfad;
-  font-weight: 800;
-}
-
-.fertilizer-notice strong {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.fertilizer-notice p {
-  margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.65;
-}
-
-.fertilizer-form {
-  display: grid;
-  gap: 20px;
-}
-
-.form-section {
-  padding: clamp(18px, 3vw, 28px);
-  border: 1px solid #e1ebe4;
-  border-radius: 18px;
-  background: #fff;
-  box-shadow: 0 8px 28px rgb(25 65 43 / 4%);
-}
-
-.section-heading {
-  display: flex;
-  align-items: flex-start;
-  gap: 13px;
-  margin-bottom: 22px;
-}
-
-.section-number {
-  display: grid;
-  flex: 0 0 38px;
-  width: 38px;
-  height: 38px;
-  place-items: center;
-  border-radius: 11px;
-  background: #e7f5eb;
-  color: #187348;
-  font-size: 0.85rem;
-  font-weight: 800;
-}
-
-.section-heading h3 {
-  margin: 0 0 5px;
-  font-size: 1.1rem;
-}
-
-.section-heading p {
-  margin: 0;
-  color: #7a8980;
-  font-size: 0.87rem;
-  line-height: 1.5;
-}
-
-.fertilizer-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.fertilizer-field {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.fertilizer-field label {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 5px;
-  color: #354c3f;
-  font-size: 0.88rem;
-  font-weight: 650;
-}
-
-.fertilizer-field label span {
-  color: #85948a;
-  font-size: 0.77rem;
-  font-weight: 500;
-}
-
-.fertilizer-field input,
-.fertilizer-field select {
+.advisor-page {
+  --advisor-ink: #14291f;
+  --advisor-green: #477f50;
+  --advisor-deep: #173f2d;
+  --advisor-muted: #687b70;
   width: 100%;
-  min-height: 47px;
-  padding: 11px 12px;
-  border: 1px solid #d9e4dc;
-  border-radius: 10px;
-  outline: none;
-  background: #fcfefc;
-  color: #203c2d;
-  font: inherit;
-  font-size: 0.92rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 8px 0 48px;
+  color: var(--advisor-ink);
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+.advisor-topline { text-align: center; max-width: 760px; margin: 0 auto 30px; }
+.advisor-script { display: block; margin-bottom: 7px; color: #41845b; font-family: 'Dancing Script', cursive; font-size: clamp(1.15rem, 2vw, 1.55rem); }
+.advisor-topline h2 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.18; letter-spacing: -0.035em; font-weight: 800; color: #171d17; }
+.advisor-topline h2 span { color: #4b8756; }
+.advisor-underline { width: 64px; height: 4px; margin: 15px auto 17px; border-radius: 99px; background: linear-gradient(90deg, #204b35, #9ac95d); }
+.advisor-topline > p { max-width: 630px; margin: 0 auto; color: #6b7b72; font-size: .97rem; line-height: 1.75; }
+.regional-presets { margin-bottom: 28px; padding: 17px 19px; border: 1px solid #dce1d4; border-radius: 18px; background: rgb(250 250 243 / 78%); }
+.presets-heading { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 12px; color: #19422e; font-size: .8rem; }
+.presets-heading strong { font-weight: 800; letter-spacing: .025em; }
+.presets-heading strong span { font-size: 1.1rem; }
+.presets-heading > span { color: #7a8a80; font-size: .78rem; }
+.presets-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.preset-card { min-width: 0; padding: 13px 14px; text-align: left; border: 1px solid #dfe5df; border-radius: 13px; background: #fff; color: #1c3225; cursor: pointer; transition: border-color .18s, box-shadow .18s, transform .18s; }
+.preset-card:hover, .preset-card:focus-visible { border-color: #7ba981; box-shadow: 0 5px 16px rgb(34 79 46 / 8%); transform: translateY(-1px); outline: none; }
+.preset-card strong { display: block; margin-bottom: 5px; font-size: .81rem; line-height: 1.35; }
+.preset-card strong span { font-weight: 600; }
+.preset-card small { display: block; color: #75847a; font-size: .73rem; line-height: 1.45; }
+.advisor-layout { display: grid; grid-template-columns: minmax(320px, .82fr) minmax(0, 1.18fr); gap: 22px; align-items: stretch; }
+.soil-metrics-card { min-width: 0; padding: 25px 25px 22px; border: 1px solid #dfe6df; border-radius: 22px; background: #fff; box-shadow: 0 10px 35px rgb(35 65 43 / 5%); }
+.metrics-card-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 22px; }
+.metrics-card-heading h3 { margin: 0; font-family: 'Playfair Display', Georgia, serif; color: #172a20; font-size: 1.25rem; }
+.reset-button { flex: 0 0 auto; padding: 7px 12px; border: 1.5px solid #315d42; border-radius: 999px; background: #fff; color: #254a34; font: inherit; font-size: .77rem; font-weight: 700; cursor: pointer; }
+.reset-button:hover { background: #edf5ed; }
+.metric-control { margin-bottom: 21px; }
+.metric-label-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 7px; }
+.metric-label-row > label { color: #42594b; font-size: .83rem; font-weight: 700; }
+.metric-value { display: flex; align-items: center; gap: 4px; white-space: nowrap; color: #19452e; font-size: .8rem; font-weight: 800; }
+.metric-value input { width: 65px; min-width: 0; padding: 2px 0; border: 0; outline: none; background: transparent; color: #19452e; text-align: right; font: inherit; font-weight: 800; }
+.metric-value input:focus { border-bottom: 1px solid #4e8b59; }
+.soil-range { display: block; width: 100%; height: 7px; margin: 11px 0 9px; appearance: none; -webkit-appearance: none; border-radius: 99px; background: #e5e7e4; cursor: pointer; accent-color: #4e8a57; }
+.soil-range::-webkit-slider-thumb { width: 16px; height: 16px; appearance: none; -webkit-appearance: none; border: 0; border-radius: 50%; background: #4e8a57; box-shadow: 0 0 0 3px rgb(78 138 87 / 9%); }
+.soil-range::-moz-range-thumb { width: 16px; height: 16px; border: 0; border-radius: 50%; background: #4e8a57; }
+.soil-range:focus-visible { outline: 3px solid rgb(78 138 87 / 25%); outline-offset: 4px; }
+.range-hints { display: flex; justify-content: space-between; gap: 8px; color: #78877d; font-size: .67rem; }
+.range-hints span:nth-child(2) { text-align: center; }
+.range-hints span:last-child { text-align: right; }
+.environment-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 24px; }
+.environment-field { display: flex; min-width: 0; flex-direction: column; gap: 7px; }
+.environment-field label { color: #334b3b; font-size: .75rem; font-weight: 750; }
+.environment-field label span { font-size: .9rem; }
+.environment-field input, .environment-field select { box-sizing: border-box; width: 100%; min-width: 0; min-height: 40px; padding: 9px 10px; border: 1px solid #dce4dd; border-radius: 9px; background: #fff; color: #1b3425; font: inherit; font-size: .83rem; outline: none; }
+.environment-field input:focus, .environment-field select:focus { border-color: #5e9867; box-shadow: 0 0 0 3px rgb(78 138 87 / 11%); }
+.profile-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; margin-top: 15px; padding-top: 16px; border-top: 1px solid #edf0eb; }
+.advisor-submit { display: flex; width: 100%; min-height: 51px; align-items: center; justify-content: center; gap: 9px; margin-top: 20px; padding: 13px 18px; border: 0; border-radius: 999px; background: linear-gradient(100deg, #173f2d, #4b8653); color: #fff; font: inherit; font-size: .92rem; font-weight: 800; cursor: pointer; box-shadow: 0 8px 20px rgb(32 81 47 / 18%); transition: transform .18s, box-shadow .18s; }
+.advisor-submit:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 11px 25px rgb(32 81 47 / 23%); }
+.advisor-submit:disabled { opacity: .7; cursor: wait; }
+.advisor-spinner { width: 16px; height: 16px; border: 2px solid rgb(255 255 255 / 40%); border-top-color: #fff; border-radius: 50%; animation: advisor-spin .8s linear infinite; }
+@keyframes advisor-spin { to { transform: rotate(360deg); } }
+.advisor-note { margin: 12px 4px 0; color: #8a958c; font-size: .7rem; line-height: 1.5; text-align: center; }
+.advisor-error { margin-top: 15px; padding: 12px 14px; border: 1px solid #f2c7c7; border-radius: 10px; background: #fff3f2; color: #9b2c2c; font-size: .85rem; line-height: 1.5; overflow-wrap: anywhere; }
+.advisor-results { display: grid; min-height: 540px; place-items: center; padding: 35px; border: 2px dashed #dfe6e0; border-radius: 22px; background: rgb(255 255 255 / 88%); text-align: center; }
+.advisor-empty { max-width: 430px; }
+.sprout-circle { display: grid; width: 72px; height: 72px; place-items: center; margin: 0 auto 20px; border-radius: 50%; background: #f5f5ee; color: #4d8a56; font-size: 2rem; }
+.advisor-empty h3, .advisor-result-content h3 { margin: 0 0 10px; color: #17291e; font-family: 'Playfair Display', Georgia, serif; font-size: 1.35rem; }
+.advisor-empty p { margin: 0 auto; max-width: 410px; color: #718077; font-size: .91rem; line-height: 1.7; }
+.advisor-loading-icon { animation: advisor-pulse 1.2s ease-in-out infinite; }
+@keyframes advisor-pulse { 50% { transform: scale(1.06); opacity: .7; } }
+.advisor-results.has-result { border-style: solid; border-color: #dce9dc; background: linear-gradient(145deg, #fff, #f8fbf6); }
+.advisor-result-content { width: 100%; max-width: 450px; }
+.result-kicker { display: block; margin: 2px 0 12px; color: #4d8a56; font-size: .7rem; font-weight: 800; letter-spacing: .13em; }
+.advisor-result-name { margin: 12px 0; color: #397849; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.7rem, 4vw, 2.4rem); font-weight: 800; overflow-wrap: anywhere; }
+.advisor-confidence { color: #506b59; font-size: .88rem; }
+.advisor-confidence small { display: block; margin-top: 5px; color: #829087; }
+.advisor-warning { margin-top: 17px; padding: 13px; border-radius: 10px; background: #fff8e9; color: #775821; font-size: .79rem; line-height: 1.6; }
+.reset-result-button { margin-top: 20px; padding: 10px 16px; border: 1px solid #b7d2bc; border-radius: 999px; background: #fff; color: #285d38; font: inherit; font-size: .82rem; font-weight: 700; cursor: pointer; }
+.reset-result-button:hover { background: #eef7ee; }
+@media (max-width: 1000px) {
+  .presets-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .advisor-layout { grid-template-columns: minmax(0, 1fr); }
+  .advisor-results { min-height: 330px; }
+}
+@media (max-width: 600px) {
+  .advisor-page { padding-top: 2px; }
+  .advisor-topline { margin-bottom: 23px; }
+  .advisor-topline > p { font-size: .88rem; }
+  .regional-presets { padding: 14px; }
+  .presets-heading { align-items: flex-start; flex-direction: column; gap: 4px; }
+  .presets-grid { grid-template-columns: 1fr; }
+  .preset-card { padding: 12px; }
+  .soil-metrics-card { padding: 18px 15px; border-radius: 17px; }
+  .metrics-card-heading h3 { font-size: 1.12rem; }
+  .metric-label-row > label { font-size: .77rem; }
+  .environment-grid { grid-template-columns: 1fr; }
+  .profile-grid { grid-template-columns: 1fr 1fr; }
+  .advisor-results { min-height: 300px; padding: 24px 17px; border-radius: 17px; }
 }
 
-.fertilizer-field input:focus,
-.fertilizer-field select:focus {
-  border-color: #299566;
-  box-shadow: 0 0 0 3px rgb(41 149 102 / 12%);
-}
+/* Theme-aware fertilizer recommendation surface */
+:root[data-theme="dark"] .advisor-topline h2,
+:root[data-theme="dark"] .metrics-card-heading h3,
+:root[data-theme="dark"] .advisor-empty h3,
+:root[data-theme="dark"] .advisor-result-content h3 { color:#e5ecdf; }
+:root[data-theme="dark"] .advisor-topline>p,
+:root[data-theme="dark"] .presets-heading>span,
+:root[data-theme="dark"] .preset-card small,
+:root[data-theme="dark"] .metric-label-row>label,
+:root[data-theme="dark"] .environment-field label,
+:root[data-theme="dark"] .advisor-empty p,
+:root[data-theme="dark"] .advisor-note,
+:root[data-theme="dark"] .advisor-confidence { color:#b4c0b0; }
+:root[data-theme="dark"] .regional-presets,
+:root[data-theme="dark"] .soil-metrics-card,
+:root[data-theme="dark"] .advisor-results { background:#202b22; border-color:#3b4b3c; color:#e5ecdf; box-shadow:0 12px 30px rgba(0,0,0,.16); }
+:root[data-theme="dark"] .regional-presets { background:linear-gradient(120deg,#202b22,#263528); }
+:root[data-theme="dark"] .presets-heading,
+:root[data-theme="dark"] .preset-card strong,
+:root[data-theme="dark"] .metric-value,
+:root[data-theme="dark"] .metric-value input { color:#d6e6cf; }
+:root[data-theme="dark"] .preset-card,
+:root[data-theme="dark"] .environment-field input,
+:root[data-theme="dark"] .environment-field select,
+:root[data-theme="dark"] .metric-value { background:#172119; border-color:#405342; color:#e5ecdf; }
+:root[data-theme="dark"] .reset-button,
+:root[data-theme="dark"] .reset-result-button { background:#2b3b2d; border-color:#405342; color:#d4e4cc; }
+:root[data-theme="dark"] .soil-range { background:#3b4b3c; }
+:root[data-theme="dark"] .advisor-results.has-result { background:linear-gradient(145deg,#202b22,#263528); border-color:#405342; }
+:root[data-theme="dark"] .sprout-circle { background:#2b3b2d; color:#b7d5a5; }
+:root[data-theme="dark"] .advisor-result-name { color:#b6d7a4; }
+:root[data-theme="dark"] .advisor-confidence small { color:#a6b4a3; }
+:root[data-theme="dark"] .advisor-warning { background:#3b3322; color:#f0d9a0; }
+:root[data-theme="dark"] .advisor-error { background:#3b2524; border-color:#71403b; color:#ffb7ad; }
+:root[data-theme="dark"] .environment-field input:focus,
+:root[data-theme="dark"] .environment-field select:focus { border-color:#8fb783; box-shadow:0 0 0 3px rgba(143,183,131,.15); }
 
-.fertilizer-submit {
+/* Premium photo-led fertilizer hero, coordinated with Crop Recommendation. */
+.advisor-page > .advisor-topline {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  max-width: none;
+  min-height: 245px;
   display: flex;
-  min-height: 52px;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  gap: 10px;
-  padding: 14px 22px;
-  border: 0;
-  border-radius: 12px;
-  background: #187348;
-  color: white;
-  font: inherit;
-  font-weight: 750;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  align-items: flex-start;
+  text-align: left;
+  padding: clamp(26px, 4vw, 48px);
+  margin: 0 0 22px;
+  border: 1px solid #d4e1cf;
+  border-radius: 22px;
+  background: linear-gradient(90deg, rgba(13, 55, 31, .97) 0%, rgba(19, 69, 37, .88) 43%, rgba(19, 69, 37, .16) 100%), url('./assets/dashboard/soil-seedling-reference.png') center 54% / cover no-repeat;
+  box-shadow: 0 14px 38px rgba(28, 65, 37, .12);
 }
-
-.fertilizer-submit:hover:not(:disabled) {
-  transform: translateY(-1px);
-  background: #105b38;
-}
-
-.fertilizer-submit:disabled {
-  cursor: wait;
-  opacity: 0.75;
-}
-
-.button-spinner {
-  width: 17px;
-  height: 17px;
-  border: 2px solid rgb(255 255 255 / 40%);
-  border-top-color: white;
-  border-radius: 50%;
-  animation: fertilizer-spin 0.8s linear infinite;
-}
-
-@keyframes fertilizer-spin {
-  to { transform: rotate(360deg); }
-}
-
-.fertilizer-error {
-  padding: 15px 17px;
-  border: 1px solid #fecaca;
-  border-radius: 12px;
-  background: #fef2f2;
-  color: #991b1b;
-}
-
-.fertilizer-error p {
-  margin: 5px 0 0;
-  overflow-wrap: anywhere;
-}
-
-.fertilizer-result {
-  margin-top: 26px;
-  padding: clamp(22px, 4vw, 36px);
-  border: 1px solid #cfe8d6;
-  border-radius: 18px;
-  background: linear-gradient(140deg, #f3fbf4, #fff);
-  text-align: center;
-}
-
-.result-topline {
-  color: #258052;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.13em;
-}
-
-.result-icon {
-  display: grid;
-  width: 54px;
-  height: 54px;
-  margin: 18px auto 12px;
-  place-items: center;
-  border-radius: 16px;
-  background: #dff3e5;
-  color: #187348;
-  font-size: 1.8rem;
-}
-
-.fertilizer-result h3 {
-  margin: 0;
-  color: #547061;
-  font-size: 1rem;
-}
-
-.fertilizer-result-name {
-  margin: 10px 0 14px;
-  color: #17633d;
-  font-size: clamp(1.6rem, 4vw, 2.3rem);
-  font-weight: 800;
-}
-
-.fertilizer-confidence {
-  color: #50675a;
-  font-size: 0.9rem;
-}
-
-.fertilizer-confidence span {
-  color: #78877d;
-}
-
-.result-warning {
-  margin: 18px 0 0;
-  padding-top: 15px;
-  border-top: 1px solid #d8e9dc;
-  color: #79551b;
-  font-size: 0.88rem;
-  line-height: 1.65;
-}
-
-@media (max-width: 760px) {
-  .fertilizer-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 480px) {
-  .fertilizer-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .fertilizer-notice {
-    padding: 14px;
-  }
+.advisor-page > .advisor-topline .advisor-script { color: #d5edbd; font-family: inherit; font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.advisor-page > .advisor-topline h2 { color: #fff; font-family: 'DM Sans', system-ui, sans-serif; font-size: clamp(30px, 3.4vw, 46px); max-width: 650px; }
+.advisor-page > .advisor-topline h2 span { color: #b9ee91; }
+.advisor-page > .advisor-topline .advisor-underline { margin: 15px 0; background: linear-gradient(90deg, #b9ee91, rgba(185,238,145,0)); }
+.advisor-page > .advisor-topline > p { max-width: 600px; margin: 0; color: #f0f6ec; }
+:root[data-theme="dark"] .advisor-page > .advisor-topline { border-color: #395642; background-image: linear-gradient(90deg, rgba(8, 27, 18, .98) 0%, rgba(10, 42, 25, .91) 45%, rgba(10, 42, 25, .42) 100%), url('./assets/dashboard/soil-seedling-reference.png'); box-shadow: 0 14px 38px rgba(0,0,0,.22); }
+@media (max-width: 600px) {
+  .advisor-page > .advisor-topline { min-height: 250px; padding: 24px 20px; background-position: 58% center; }
 }

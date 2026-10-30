@@ -1,115 +1,75 @@
-/* CropRecommendation.css – Professional, responsive styling for the Crop Recommendation page */
+.crop-advisor-page{--crop-ink:#25382d;--crop-muted:#788176;--crop-green:#426c4c;--crop-green-dark:#2d5138;--crop-pale:#edf2e9;--crop-border:#e1e6dc;color:var(--crop-ink);max-width:1320px;margin:0 auto;padding:32px 28px 44px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.crop-advisor-topline{text-align:center;margin:0 auto 28px;max-width:780px}.crop-advisor-script{display:inline-block;color:#71846c;font-family:Georgia,serif;font-style:italic;font-size:15px;letter-spacing:.04em;margin-bottom:9px}.crop-advisor-topline h2{font-size:clamp(30px,4vw,43px);line-height:1.15;letter-spacing:-.045em;margin:0;color:#263c2d;font-weight:750}.crop-advisor-topline h2 span{color:#6b8a62}.crop-advisor-underline{width:58px;height:3px;background:#89a77b;border-radius:10px;margin:17px auto}.crop-advisor-topline p{color:#7c8478;font-size:14px;line-height:1.7;margin:0 auto;max-width:660px}
+.crop-regional-presets,.crop-soil-metrics-card,.crop-result-panel{border:1px solid var(--crop-border);border-radius:17px;background:#fff;box-shadow:0 9px 30px rgba(48,66,43,.045)}.crop-regional-presets{padding:19px 21px;margin-bottom:20px;background:linear-gradient(120deg,#fbfcf8,#f5f7f0)}.crop-presets-heading{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:13px}.crop-presets-heading strong{font-size:11px;letter-spacing:.09em;color:#52664d}.crop-presets-heading strong span{font-size:17px;margin-right:5px}.crop-presets-heading>span{font-size:11px;color:#8b9186}.crop-presets-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.crop-preset-card{appearance:none;text-align:left;border:1px solid #e0e6d9;border-radius:11px;background:#fff;padding:13px 14px;cursor:pointer;transition:transform .18s,border-color .18s,box-shadow .18s;min-width:0}.crop-preset-card:hover,.crop-preset-card:focus-visible{transform:translateY(-2px);border-color:#9db393;box-shadow:0 7px 18px #3b5a3212;outline:none}.crop-preset-card strong{display:block;color:#3d583e;font-size:12px;line-height:1.5}.crop-preset-card strong span{color:#879080;font-size:10px;font-weight:500}.crop-preset-card small{display:block;color:#858c80;font-size:10px;line-height:1.55;margin-top:5px}
+.crop-advisor-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,.8fr);gap:20px;align-items:start}.crop-soil-metrics-card{padding:24px}.crop-metrics-card-heading,.crop-climate-heading{display:flex;justify-content:space-between;align-items:center;gap:12px}.crop-metrics-card-heading{margin-bottom:22px}.crop-metrics-card-heading h3,.crop-climate-heading h3{font-size:19px;letter-spacing:-.025em;margin:3px 0 0;color:#2e4433}.crop-section-eyebrow{font-size:9px;letter-spacing:.15em;color:#8b9a82;font-weight:750}.crop-reset-button{border:1px solid #e1e7dc;background:#f9fbf7;color:#63745d;border-radius:8px;padding:8px 12px;font-size:11px;cursor:pointer}.crop-reset-button:hover{background:#edf3e9}.crop-nutrient-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px 22px}.crop-metric-label-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}.crop-metric-label-row>label{font-size:12px;font-weight:650;color:#4b5949}.crop-metric-value{display:flex;align-items:center;gap:5px;border:1px solid #dfe6da;border-radius:8px;background:#fbfcf9;padding:4px 7px;flex-shrink:0}.crop-metric-value input{width:58px;min-width:0;border:0;outline:0;background:transparent;color:#344b36;font-size:12px;font-weight:700;text-align:right;padding:2px}.crop-metric-value span{font-size:10px;color:#8b9485}.crop-soil-range{display:block;width:100%;height:5px;accent-color:#64865b;cursor:pointer;margin:0}.crop-range-hints{display:flex;justify-content:space-between;gap:4px;margin-top:9px;color:#9aa194;font-size:9px}.crop-climate-heading{border-top:1px solid #edf0e9;margin-top:26px;padding-top:21px;margin-bottom:15px}.crop-climate-heading>span{font-size:10px;color:#90978c}.crop-climate-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.crop-environment-field{display:flex;flex-direction:column;gap:8px;min-width:0}.crop-environment-field label{font-size:11px;color:#5e6b59;font-weight:600}.crop-environment-field label span{color:#77946c;margin-right:3px}.crop-environment-field input{width:100%;box-sizing:border-box;border:1px solid #dfe5d9;border-radius:9px;padding:11px 10px;background:#fbfcf9;color:#314734;font:inherit;font-size:13px;outline:none}.crop-environment-field input:focus{border-color:#8fa986;box-shadow:0 0 0 3px #8fa98620}.crop-error-message{margin-top:18px;border:1px solid #f2ceca;background:#fff4f2;color:#a13d32;padding:12px 14px;border-radius:9px;font-size:12px;line-height:1.5}.crop-submit-row{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-top:24px;padding-top:18px;border-top:1px solid #edf0e9}.crop-submit-row p{font-size:10px;line-height:1.6;color:#8c9587;margin:0}.crop-submit-btn{border:0;border-radius:9px;background:#456e4c;color:white;font-size:12px;font-weight:700;padding:13px 18px;cursor:pointer;box-shadow:0 5px 13px #426c4c20;white-space:nowrap;transition:background .18s,transform .18s}.crop-submit-btn:hover:not(:disabled){background:#31583a;transform:translateY(-1px)}.crop-submit-btn:disabled{opacity:.65;cursor:wait}
+.crop-result-panel{position:sticky;top:20px;overflow:hidden;padding:27px 24px 0;background:linear-gradient(155deg,#fbfcf8 0%,#f1f5ed 100%);min-height:360px}.crop-result-icon{width:42px;height:42px;display:grid;place-items:center;border:1px solid #dce6d5;background:#e9f0e3;color:#64835b;border-radius:13px;font-size:24px;margin-bottom:19px}.crop-result-eyebrow{font-size:9px;letter-spacing:.15em;color:#819178;font-weight:750}.crop-result-panel h3{font-size:23px;letter-spacing:-.04em;line-height:1.2;margin:8px 0 11px;color:#2c4431}.crop-result-description,.crop-result-intro{font-size:12px;line-height:1.75;color:#7d8778;margin:0}.crop-result-steps{display:grid;gap:15px;margin:25px 0}.crop-result-steps>div{display:flex;align-items:flex-start;gap:11px}.crop-result-steps>div>span{display:grid;place-items:center;flex:0 0 29px;height:29px;border:1px solid #dfe7d9;border-radius:9px;background:#fff;color:#719067;font-size:10px;font-weight:750}.crop-result-steps p,.crop-result-footer p{display:grid;gap:4px;margin:0}.crop-result-steps strong,.crop-result-footer strong{font-size:11px;color:#53644e}.crop-result-steps small,.crop-result-footer small{font-size:10px;line-height:1.5;color:#8d9587}.crop-result-footer{display:flex;align-items:center;gap:11px;margin:25px -24px 0;padding:16px 24px;background:#e8eee2;border-top:1px solid #dce5d5}.crop-result-footer>span{font-size:23px;color:#6b8b61}.crop-result-content{margin-top:18px}.crop-result-crop{padding:17px 14px;margin:15px 0;border:1px solid #d8e4d0;border-radius:12px;background:#fff;color:#3c6440;text-align:center;font-family:Georgia,serif;font-size:27px;font-weight:700;text-transform:capitalize;overflow-wrap:anywhere}.crop-confidence{display:inline-block;background:#e3edde;border-radius:100px;padding:7px 11px;color:#4f7548;font-size:11px;font-weight:700}.crop-result-note{margin:18px 0 0;color:#818b7b;font-size:11px;line-height:1.7}.crop-advisor-disclaimer{text-align:center;font-size:10px;line-height:1.6;color:#93998d;margin:18px 0 0}
+@media(max-width:1000px){.crop-advisor-layout{grid-template-columns:minmax(0,1.3fr) minmax(250px,.8fr)}.crop-presets-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.crop-soil-metrics-card{padding:20px}.crop-result-panel{padding:23px 20px 0}.crop-result-footer{margin-left:-20px;margin-right:-20px;padding-left:20px;padding-right:20px}}
+@media(max-width:760px){.crop-advisor-page{padding:24px 15px 32px}.crop-advisor-layout{grid-template-columns:1fr}.crop-result-panel{position:static;min-height:0}.crop-nutrient-grid{gap:22px 16px}}
+@media(max-width:520px){.crop-presets-heading{align-items:flex-start;flex-direction:column;gap:5px}.crop-presets-grid{grid-template-columns:1fr 1fr;gap:8px}.crop-preset-card{padding:11px}.crop-preset-card strong{font-size:11px}.crop-preset-card strong span{display:block}.crop-soil-metrics-card{padding:17px 14px}.crop-nutrient-grid{grid-template-columns:1fr;gap:20px}.crop-climate-grid{grid-template-columns:1fr}.crop-metric-label-row>label{font-size:12px}.crop-submit-row{align-items:stretch;flex-direction:column}.crop-submit-btn{width:100%}.crop-climate-heading{align-items:flex-start;flex-direction:column;gap:5px}}
 
-/* Root container */
-.crop-recommendation-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #2c3e50;
-}
+/* Theme-aware crop recommendation surface */
+:root[data-theme="dark"] .crop-advisor-page { --crop-ink:#e5ecdf; --crop-muted:#b1bdae; --crop-green:#a5c994; --crop-green-dark:#c5dfb8; --crop-pale:#263729; --crop-border:#3b4b3c; color:var(--crop-ink); }
+:root[data-theme="dark"] .crop-advisor-topline h2,
+:root[data-theme="dark"] .crop-metrics-card-heading h3,
+:root[data-theme="dark"] .crop-climate-heading h3,
+:root[data-theme="dark"] .crop-result-panel h3 { color:#e5ecdf; }
+:root[data-theme="dark"] .crop-advisor-script,
+:root[data-theme="dark"] .crop-advisor-topline p,
+:root[data-theme="dark"] .crop-presets-heading>span,
+:root[data-theme="dark"] .crop-preset-card small,
+:root[data-theme="dark"] .crop-metric-label-row>label,
+:root[data-theme="dark"] .crop-environment-field label,
+:root[data-theme="dark"] .crop-result-description,
+:root[data-theme="dark"] .crop-result-intro,
+:root[data-theme="dark"] .crop-result-note,
+:root[data-theme="dark"] .crop-advisor-disclaimer { color:#b4c0b0; }
+:root[data-theme="dark"] .crop-regional-presets,
+:root[data-theme="dark"] .crop-soil-metrics-card,
+:root[data-theme="dark"] .crop-result-panel { background:#202b22; border-color:#3b4b3c; box-shadow:0 12px 30px rgba(0,0,0,.16); }
+:root[data-theme="dark"] .crop-regional-presets { background:linear-gradient(120deg,#202b22,#263528); }
+:root[data-theme="dark"] .crop-presets-heading strong,
+:root[data-theme="dark"] .crop-preset-card strong,
+:root[data-theme="dark"] .crop-result-steps strong,
+:root[data-theme="dark"] .crop-result-footer strong { color:#d6e6cf; }
+:root[data-theme="dark"] .crop-preset-card,
+:root[data-theme="dark"] .crop-metric-value,
+:root[data-theme="dark"] .crop-environment-field input,
+:root[data-theme="dark"] .crop-result-crop { background:#172119; border-color:#405342; color:#e5ecdf; }
+:root[data-theme="dark"] .crop-metric-value input { color:#e5ecdf; }
+:root[data-theme="dark"] .crop-reset-button,
+:root[data-theme="dark"] .crop-result-steps>div>span { background:#2b3b2d; border-color:#405342; color:#d4e4cc; }
+:root[data-theme="dark"] .crop-climate-heading,
+:root[data-theme="dark"] .crop-submit-row { border-color:#39483a; }
+:root[data-theme="dark"] .crop-result-footer { background:#29392a; border-color:#3b4b3c; }
+:root[data-theme="dark"] .crop-confidence { background:#314b32; color:#cce4bd; }
+:root[data-theme="dark"] .crop-result-icon { background:#2b3b2d; border-color:#405342; color:#b7d5a5; }
+:root[data-theme="dark"] .crop-submit-btn { background:linear-gradient(110deg,#47744b,#5b8e58); }
 
-/* Heading */
-.crop-recommendation-container h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #224d20; /* dark green */
-}
-
-/* Form layout – responsive grid */
-.crop-form {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.form-group {
+/* Premium photo-led recommendation hero using the user's soil-and-seedling image. */
+.crop-advisor-page .crop-advisor-topline {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  max-width: none;
+  min-height: 245px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  padding: clamp(26px, 4vw, 48px);
+  margin: 0 0 22px;
+  border: 1px solid #d4e1cf;
+  border-radius: 22px;
+  background: linear-gradient(90deg, rgba(13, 55, 31, .97) 0%, rgba(19, 69, 37, .88) 43%, rgba(19, 69, 37, .16) 100%), url('./assets/dashboard/soil-seedling-reference.png') center 54% / cover no-repeat;
+  box-shadow: 0 14px 38px rgba(28, 65, 37, .12);
 }
-
-.form-group label {
-  margin-bottom: 0.3rem;
-  font-weight: 600;
-}
-
-.form-group input {
-  padding: 0.5rem;
-  border: 1px solid #b2b2b2;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-
-/* Submit button */
-.submit-btn {
-  grid-column: 1 / -1;
-  padding: 0.75rem 1.5rem;
-  background-color: #22c55e; /* accent-primary */
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.submit-btn:disabled {
-  background-color: #a5d6a7;
-  cursor: not-allowed;
-}
-
-.submit-btn:hover:not(:disabled) {
-  background-color: #1fa953;
-}
-
-/* Error message */
-.error-message {
-  grid-column: 1 / -1;
-  color: #b91c1c; /* red */
-  background-color: #fee2e2;
-  padding: 0.5rem;
-  border-radius: 4px;
-  margin-bottom: 0.5rem;
-}
-
-/* Result card */
-.result-box {
-  margin-top: 1.5rem;
-  padding: 1rem;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background-color: #f9fafb;
-  text-align: center;
-}
-
-.result-box h3 {
-  margin-bottom: 0.5rem;
-  color: #166534; /* darker green */
-}
-
-.crop-label {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #166534;
-  margin: 0.5rem 0;
-}
-
-.crop-confidence {
-  font-size: 1rem;
-  color: #374151;
-}
-
-/* Mobile adjustments */
-@media (max-width: 480px) {
-  .crop-recommendation-container {
-    padding: 1rem;
-  }
-  .crop-form {
-    grid-template-columns: 1fr;
-  }
-  .submit-btn {
-    font-size: 1rem;
-  }
+.crop-advisor-page .crop-advisor-script { color: #d5edbd; font-family: inherit; font-style: normal; font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.crop-advisor-page .crop-advisor-topline h2 { color: #fff; font-size: clamp(30px, 3.4vw, 46px); max-width: 620px; }
+.crop-advisor-page .crop-advisor-topline h2 span { color: #b9ee91; }
+.crop-advisor-page .crop-advisor-underline { margin: 15px 0; background: linear-gradient(90deg, #b9ee91, rgba(185,238,145,0)); }
+.crop-advisor-page .crop-advisor-topline p { max-width: 600px; margin: 0; color: #f0f6ec; }
+:root[data-theme="dark"] .crop-advisor-page .crop-advisor-topline { border-color: #395642; background-image: linear-gradient(90deg, rgba(8, 27, 18, .98) 0%, rgba(10, 42, 25, .91) 45%, rgba(10, 42, 25, .42) 100%), url('./assets/dashboard/soil-seedling-reference.png'); box-shadow: 0 14px 38px rgba(0,0,0,.22); }
+@media (max-width: 600px) {
+  .crop-advisor-page .crop-advisor-topline { min-height: 250px; padding: 24px 20px; background-position: 58% center; }
 }

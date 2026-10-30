@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './DashboardPremium.css';
 import CropRecommendation from './CropRecommendation';
 import FertilizerRecommendation from './FertilizerRecommendation';
@@ -12,96 +12,60 @@ const navigation = [
 
 function Dashboard({ navigate }) {
   return (
-    <div className="dashboard-page">
-      <section className="welcome-panel">
-        <div className="welcome-copy">
-          <span className="welcome-kicker">YOUR INTELLIGENT FARMING COMPANION</span>
-          <h1>Grow smarter.<br /><span>Farm better.</span></h1>
-          <p>
-            Make informed farming decisions using soil parameters,
-            crop recommendations and fertilizer guidance.
-          </p>
-          <button className="primary-button" onClick={() => navigate('crop')}>
-            Explore crop recommendations <span>→</span>
-          </button>
+    <div className="dashboard-page dashboard-premium">
+      <section className="dash-hero">
+        <div className="dash-hero-copy">
+          <span className="dash-pill"><span className="dash-pill-dot" /> AI-POWERED AGRICULTURE PLATFORM</span>
+          <h2>Smarter decisions<br />for a <em>brighter harvest.</em></h2>
+          <p>Get AI-assisted crop recommendations and fertilizer guidance based on your soil and climate inputs — all in one place.</p>
+          <div className="dash-hero-actions">
+            <button className="dash-primary" onClick={() => navigate('crop')}>Explore recommendations <span>↗</span></button>
+            <button className="dash-secondary" onClick={() => navigate('fertilizer')}>Fertilizer tool <span>→</span></button>
+          </div>
+          <div className="dash-trust-row"><span>✓ Soil-aware inputs</span><span>✓ Simple workflow</span><span>✓ AI-assisted guidance</span></div>
         </div>
-        <div className="welcome-visual" aria-hidden="true">
-          <div className="visual-sun" />
-          <div className="visual-hill hill-back" />
-          <div className="visual-hill hill-front" />
-          <div className="visual-stem" />
-          <div className="visual-leaf leaf-left" />
-          <div className="visual-leaf leaf-right" />
+        <div className="dash-hero-photo" role="img" aria-label="Sunrise over green agricultural fields">
+          <div className="dash-photo-note"><span className="dash-note-icon">✦</span><div><strong>Grow with confidence</strong><small>Data-informed farming decisions</small></div></div>
         </div>
       </section>
 
-      <div className="section-heading">
-        <div>
-          <span className="eyebrow">OVERVIEW</span>
-          <h2>Your farming workspace</h2>
-          <p>Quick access to your AI-assisted farming tools.</p>
-        </div>
-        <span className="demo-badge">● Demo dashboard</span>
+      <section className="dash-metrics" aria-label="Platform overview">
+        <article className="dash-metric"><span className="dash-metric-icon mint">♧</span><div><small>AI RECOMMENDATION TOOLS</small><strong>02</strong><p>Crop and fertilizer guidance</p></div></article>
+        <article className="dash-metric"><span className="dash-metric-icon sky">⌁</span><div><small>INPUTS YOU CONTROL</small><strong>Soil + Climate</strong><p>Use your field's measured values</p></div></article>
+        <article className="dash-metric"><span className="dash-metric-icon amber">✳</span><div><small>BUILT FOR CLARITY</small><strong>Simple steps</strong><p>Enter details, then request a prediction</p></div></article>
+      </section>
+
+      <div className="dash-section-head">
+        <div><span className="dash-eyebrow">YOUR FARMING WORKSPACE</span><h2>Explore your AI tools</h2><p>Choose a tool to get started with your field inputs.</p></div>
+        <span className="dash-section-sprout">🌿 Make every input count</span>
       </div>
 
-      <section className="stats-grid">
-        <article className="stat-card">
-          <span className="stat-icon green">♧</span>
-          <span className="stat-label">AI TOOLS</span>
-          <strong>02</strong>
-          <small>Crop and fertilizer recommendations</small>
+      <section className="dash-tool-grid">
+        <article className="dash-tool-card">
+          <div className="dash-tool-image crop-photo"><span className="dash-image-chip">CROP PLANNING</span></div>
+          <div className="dash-tool-body"><span className="dash-tool-icon crop-color">♧</span><h3>Crop Recommendation</h3><p>Explore a crop suggestion based on soil nutrients and environmental conditions.</p><button onClick={() => navigate('crop')}>Open crop tool <span>→</span></button></div>
         </article>
-        <article className="stat-card">
-          <span className="stat-icon blue">⌁</span>
-          <span className="stat-label">INPUT DATA</span>
-          <strong>Soil +</strong>
-          <small>Soil and environmental parameters</small>
+        <article className="dash-tool-card">
+          <div className="dash-tool-image fertilizer-photo"><span className="dash-image-chip">SOIL NUTRITION</span></div>
+          <div className="dash-tool-body"><span className="dash-tool-icon fertilizer-color">✳</span><h3>Fertilizer Recommendation</h3><p>Enter your crop and soil details to view the fertilizer model's prediction.</p><button onClick={() => navigate('fertilizer')}>Open fertilizer tool <span>→</span></button></div>
         </article>
-        <article className="stat-card">
-          <span className="stat-icon amber">✳</span>
-          <span className="stat-label">WORKFLOW</span>
-          <strong>Simple</strong>
-          <small>Enter values and request a prediction</small>
+        <article className="dash-tool-card dash-info-card">
+          <div className="dash-tool-image market-photo"><span className="dash-image-chip">FARM SMARTER</span></div>
+          <div className="dash-tool-body"><span className="dash-tool-icon market-color">✦</span><h3>Better-informed choices</h3><p>Use field-specific inputs and treat model results as decision support, not a substitute for local agronomy advice.</p><button onClick={() => navigate('crop')}>Start with soil data <span>→</span></button></div>
         </article>
       </section>
 
-      <div className="section-heading tools-heading">
-        <div>
-          <span className="eyebrow">RECOMMENDATION CENTER</span>
-          <h2>Choose your tool</h2>
-          <p>Select a module to get started.</p>
+      <section className="dash-how-panel">
+        <div className="dash-how-title"><div><span className="dash-eyebrow">A CLEAR WORKFLOW</span><h2>From soil data to a smarter next step</h2></div><div className="dash-how-leaf">🌱</div></div>
+        <div className="dash-steps">
+          <div className="dash-step"><span>01</span><div><strong>Enter your data</strong><p>Add soil nutrients and climate values.</p></div></div>
+          <i>→</i>
+          <div className="dash-step"><span>02</span><div><strong>Run the model</strong><p>Send the inputs to the connected prediction service.</p></div></div>
+          <i>→</i>
+          <div className="dash-step"><span>03</span><div><strong>Review the result</strong><p>Use the recommendation as a starting point.</p></div></div>
         </div>
-      </div>
-
-      <section className="tools-grid">
-        <button className="tool-card" onClick={() => navigate('crop')}>
-          <span className="tool-icon crop-icon">🌱</span>
-          <span className="tool-tag">MACHINE LEARNING</span>
-          <strong>Crop Recommendation</strong>
-          <span className="tool-description">
-            Explore a crop recommendation based on soil nutrients and environmental conditions.
-          </span>
-          <span className="tool-link">Open crop tool <b>→</b></span>
-        </button>
-        <button className="tool-card" onClick={() => navigate('fertilizer')}>
-          <span className="tool-icon fertilizer-icon">🧪</span>
-          <span className="tool-tag">MACHINE LEARNING</span>
-          <strong>Fertilizer Recommendation</strong>
-          <span className="tool-description">
-            Enter the required crop and soil details to obtain a fertilizer prediction.
-          </span>
-          <span className="tool-link">Open fertilizer tool <b>→</b></span>
-        </button>
       </section>
-
-      <section className="info-panel">
-        <div className="info-symbol">✦</div>
-        <div>
-          <strong>How it works</strong>
-          <p>Choose a recommendation tool, enter the requested inputs, and submit them to your connected prediction API.</p>
-        </div>
-        <span className="info-number">01 — 03</span>
-      </section>
+      <div className="dash-footer-note"><span>✦</span><p><strong>Healthy soil, informed choices.</strong> For best results, use accurate measurements and verify recommendations with local agricultural guidance.</p></div>
     </div>
   );
 }
@@ -197,7 +161,7 @@ export default function App() {
               aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
               title={darkMode ? 'Light mode' : 'Dark mode'}
             >
-              {darkMode ? '☀' : '☾'}
+              <span className="theme-toggle-icon" aria-hidden="true">{darkMode ? '☀' : '☾'}</span><span className="theme-toggle-text">{darkMode ? 'Light' : 'Dark'}</span>
             </button>
             <div className="user-avatar" title="AgroSphere user">A</div>
           </div>
